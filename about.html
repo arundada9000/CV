@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About</title>
+    <style>
+      body {
+        height: 100vh;
+        font-family: cursive;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: bisque;
+      }
+      p {
+        font-size: 20px;
+        text-align: justify;
+      }
+      .main {
+        display: inline-block;
+        border: 5px solid black;
+        box-shadow: 5px 5px 5px;
+        padding: 20px;
+        background-color: beige;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h1 style="text-align: center; font-family: Arial, Helvetica, sans-serif">
+        About me
+      </h1>
+      <p style="max-width: 1000px">
+        Hi, I am Arun Neupane. I am <span id="age"></span> years old
+        (2004/04/27). I am from Parbat, wahaki -4, Nepal. I completed my +2 in
+        physical Science from Purnamrit Bhawani Higher Secondary School,
+        Syangja, Nepal. I am currently pursuing Bachlors of Science in Computer
+        Science and Information Technology form Bhairahawa Multiple Campus,
+        Bhairahawa, Nepal. I have interest in Coding and Programming.
+      </p>
+    </div>
+    <script>
+      const age = document.getElementById("age");
+      let date = new Date();
+      let nowage = date.getFullYear() - 2004;
+      let nowmonth = date.getMonth();
+      console.log(nowmonth);
+      if (nowmonth < 3) {
+        nowage -= 1;
+      }
+      age.textContent = nowage;
+    </script>
+  </body>
+</html>
