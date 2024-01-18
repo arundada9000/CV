@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <style>
+      body {
+        width: 100vh;
+        height: 100vh;
+        background-color: beige;
+      }
+      .cell {
+        height: 75px;
+        width: 75px;
+        border: 2px solid black;
+        line-height: 75px;
+        font-size: 50px;
+        cursor: pointer;
+      }
+      #gameContainer {
+        font-family: "Permanent Marker", cursive;
+        text-align: center;
+      }
+      #cellContainer {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        width: 225px;
+        margin: auto;
+      }
+      #restartbtn {
+        visibility: hidden;
+        color: black;
+        background-color: cadetblue;
+        cursor: pointer;
+        font-size: 15px;
+        width: 90px;
+        border: 1px solid blue;
+        border-radius: 15%;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        transition: all 0.5s;
+      }
+      #restartbtn:hover {
+        background-color: deepskyblue;
+        padding: 12px;
+      }
+      #fullscreen {
+        position: absolute;
+        background-color: antiquewhite;
+        border: 1px solid green;
+        height: 40px;
+      }
+      #tic {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="fullscreen">Go Full Screen</button>
+    <div id="gameContainer">
+      <h1 id="tic">Tic Tac Toe</h1>
+      <div id="cellContainer">
+        <div cellIndex="0" class="cell"></div>
+        <div cellIndex="1" class="cell"></div>
+        <div cellIndex="2" class="cell"></div>
+        <div cellIndex="3" class="cell"></div>
+        <div cellIndex="4" class="cell"></div>
+        <div cellIndex="5" class="cell"></div>
+        <div cellIndex="6" class="cell"></div>
+        <div cellIndex="7" class="cell"></div>
+        <div cellIndex="8" class="cell"></div>
+      </div>
+      <h2 id="statusText"></h2>
+      <button id="restartbtn">Restart</button>
+    </div>
+
+    <script>
+      const cells = document.querySelectorAll(".cell");
+      const statusText = document.querySelector("#statusText");
+      const restartBtn = document.querySelector("#restartbtn");
+      const winConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+      let options = ["", "", "", "", "", "", "", "", ""];
+      let currentPlayer = "X";
+      let running = false;
+      initializeGame();
+      function initializeGame() {
+        running = true;
+        cells.forEach((cell) => cell.addEventListener("click", cellClicked));
+        restartBtn.addEventListener("click", restartGame);
+        statusText.textContent = `${currentPlayer}'s turn`;
+      }
+      function cellClicked() {
+        const cellIndex = this.getAttribute("cellIndex");
+        if (options[cellIndex] != "" || !running) {
+          return;
+        }
+        updateCell(this, cellIndex);
+        checkWinner();
+      }
+      function updateCell(cell, index) {
+        options[index] = currentPlayer;
+        cell.textContent = currentPlayer;
+      }
+      function changePlayer() {
+        currentPlayer = currentPlayer == "X" ? "O" : "X";
+        statusText.textContent = `${currentPlayer}'s turn`;
+      }
+      function checkWinner() {
+        let roundWon = false;
+        for (let i = 0; i < winConditions.length; i++) {
+          const condition = winConditions[i];
+          const cellA = options[condition[0]];
+          const cellB = options[condition[1]];
+          const cellC = options[condition[2]];
+          if (cellA == "" || cellB == "" || cellC == "") {
+            continue;
+          }
+          if (cellA == cellB && cellB == cellC) {
+            roundWon = true;
+            cells[winConditions[i][0]].style.backgroundColor = "pink";
+            cells[winConditions[i][1]].style.backgroundColor = "pink";
+            cells[winConditions[i][2]].style.backgroundColor = "pink";
+            restartnow();
+            break;
+          }
+        }
+        if (roundWon) {
+          statusText.textContent = `${currentPlayer} won !`;
+          running = false;
+        } else if (!options.includes("")) {
+          statusText.textContent = `It's a draw !`;
+          running = false;
+        } else {
+          changePlayer();
+        }
+        if (!running || roundWon) {
+          restartBtn.style.visibility = "visible";
+        }
+      }
+      function restartGame() {
+        currentPlayer = "X";
+        options = ["", "", "", "", "", "", "", "", ""];
+        statusText.textContent = `${currentPlayer}'s turn`;
+        cells.forEach((cell) => (cell.textContent = ""));
+        running = true;
+        restartBtn.style.visibility = "hidden";
+        cells.forEach((cells) => (cells.style.backgroundColor = "beige"));
+        clearInterval(timerid);
+      }
+      cells.forEach((cellz) =>
+        cellz.addEventListener("mouseover", () => {
+          if (cellz.textContent == "") {
+            cellz.style.backgroundColor = "aqua";
+          } else if (cellz.style.backgroundColor == "pink") {
+            cellz.style.backgroundColor = "pink";
+          } else {
+            cellz.style.backgroundColor = "red";
+          }
+        })
+      );
+      cells.forEach((cellz) =>
+        cellz.addEventListener("mouseout", () => {
+          if (cellz.textContent == "") {
+            cellz.style.backgroundColor = "beige";
+          } else if (cellz.style.backgroundColor == "pink") {
+            cellz.style.backgroundColor = "pink";
+          } else if (cellz.textContent == "X") {
+            cellz.style.backgroundColor = "green";
+          } else if (cellz.textContent == "O") {
+            cellz.style.backgroundColor = "yellow";
+          }
+        })
+      );
+      let timerid = null;
+      let scalex = 1,
+        scaley = 1;
+      let shrinking = false;
+      const myanimation = document.getElementById("restartbtn");
+
+      function restartnow() {
+        setInterval(frame, 5);
+        function frame() {
+          if (scalex >= 2) {
+            shrinking = true;
+          } else if (scalex <= 1) {
+            shrinking = false;
+          }
+          if (shrinking) {
+            scalex = -0.01;
+            scaley = -0.01;
+          } else {
+            scalex += 0.01;
+            scaley += 0.01;
+          }
+          myanimation.style.transform = "scale(" + scalex + "," + scaley + ")";
+        }
+      }
+      const fullscreen = document.getElementById("fullscreen");
+      fullscreen.addEventListener("click", () => {
+        document.getElementById("gameContainer").style.height = "100vh";
+        document.getElementById("gameContainer").style.width = "100vh";
+        cells.forEach((cell) => {
+          cell.style.height = "25vh";
+          cell.style.width = "25vh";
+          console.log("Button clicked");
+          fullscreen.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>

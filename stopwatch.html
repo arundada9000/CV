@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stopwatch</title>
+    <style>
+      body{
+        margin: 0;
+        min-height: 100vh;
+        background-color: beige;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .timerbtn {
+        width: 80px;
+        height: 40px;
+        border: 3px solid;
+        border-radius: 12px;
+        background-color: #333333;
+        color: white;
+        cursor: pointer;
+        font-family: consolas, monospace;
+      }
+      #timerdisplay {
+        font-size: 75px;
+        color: #40c437;
+        font-family: consolas, monospace;
+      }
+      #timecontainer {
+        text-align: center;
+        border: 3px solid;
+        border-radius: 25px;
+        background-color: #222222;
+        padding: 10px;
+        display: inline-block;
+      }
+      #time {
+        background-color: black;
+        color: red;
+        display: inline-block;
+        font-size: 25px;
+        padding: 10px;
+        text-align: center;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="timecontainer">
+      <div id="timerdisplay">00:00:00</div>
+      <button id="startbtn" class="timerbtn">Start</button>
+      <button id="resetbtn" class="timerbtn">Reset</button>
+      <button id="savebtn" class="timerbtn">Save</button>
+    </div>
+    <br />
+    <div id="time">Saved time</div>
+    <script>
+      const timedisplay = document.querySelector("#timerdisplay");
+      const startbtn = document.querySelector("#startbtn");
+      const resetbtn = document.querySelector("#resetbtn");
+      const savebtn = document.querySelector("#savebtn");
+      let time = document.getElementById("time");
+
+      let starttime = 0;
+      let elaspedtime = 0;
+      let currenttime = 0;
+      let paused = true;
+      let intervalid;
+      let hrs = 0;
+      let mins = 0;
+      let secs = 0;
+
+      startbtn.addEventListener("click", () => {
+        if (
+          startbtn.textContent == "Start" ||
+          startbtn.textContent == "Resume"
+        ) {
+          if (paused) {
+            paused = false;
+            starttime = Date.now() - elaspedtime;
+            intervalid = setInterval(updatetime, 75);
+          }
+          startbtn.textContent = "Pause";
+        } else if (startbtn.textContent == "Pause") {
+          if (!paused) {
+            paused = true;
+            elaspedtime = Date.now() - starttime;
+            clearInterval(intervalid);
+          }
+          startbtn.textContent = "Resume";
+        }
+      });
+      resetbtn.addEventListener("click", () => {
+        paused = true;
+        clearInterval(intervalid);
+        hrs = 0;
+        mins = 0;
+        secs = 0;
+        elaspedtime = 0;
+        starttime = 0;
+        currenttime = 0;
+        startbtn.textContent = "Start";
+        timedisplay.textContent = "00:00:00";
+        time.textContent = "";
+      });
+      savebtn.addEventListener("click", () => {
+        time.textContent = `${hrs}h:${mins}m:${secs}s`;
+      });
+      function updatetime() {
+        elaspedtime = Date.now() - starttime;
+        secs = Math.floor((elaspedtime / 1000) % 60);
+        mins = Math.floor((elaspedtime / (1000 * 60)) % 60);
+        hrs = Math.floor((elaspedtime / (1000 * 60 * 60)) % 60);
+
+        secs = pads(secs);
+        mins = pads(mins);
+        hrs = pads(hrs);
+
+        timedisplay.textContent = `${hrs}:${mins}:${secs}`;
+
+        function pads(unit) {
+          return ("0" + unit).length > 2 ? unit : "0" + unit;
+        }
+      }
+    </script>
+  </body>
+</html>

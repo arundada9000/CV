@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissor</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: bisque;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        display: flex;
+      }
+      .choicebutton {
+        background-color: lightblue;
+        border: none;
+        padding: 10px;
+        border-radius: 20%;
+        min-width: 100px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: font-size 1s ease-in-out;
+      }
+      .scissors {
+        width: 100px;
+      }
+      .choicebutton:hover {
+        font-size: 18px;
+      }
+      .buttonclass {
+        margin: 15px;
+        display: flex;
+        height: 50px;
+        width: 350px;
+        align-items: center;
+        justify-content: space-around;
+      }
+      #gamediv {
+        border: 2px dashed purple;
+        padding: 20px;
+        box-shadow: 5px 5px 5px 5px;
+        border-radius: 5%;
+      }
+      #playertext {
+        color: blue;
+      }
+      #computertext {
+        color: red;
+      }
+      #title {
+        background-color: gray;
+        margin: 0;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <br />
+    <div id="gamediv">
+      <h1 id="title">
+        <span style="background-color: white; color: black">ROCK</span>
+        <span style="color: white; background-color: black">PAPER</span>
+        <span style="background-color: green; color: aqua">SCISSORS</span>
+      </h1>
+      <div>
+        <h1 class="gamertext" id="playertext">You : Select your hand</h1>
+        <h1 class="gamertext" id="computertext">Bot :</h1>
+        <h1 class="gamertext" id="resulttext">Result :</h1>
+      </div>
+      <div class="buttonclass">
+        <div>
+          <button class="choicebutton" id="rock">ROCK</button>
+        </div>
+        <div>
+          <button class="choicebutton">PAPER</button>
+        </div>
+        <div class="scissors">
+          <button class="choicebutton">SCISSORS</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const playertext = document.getElementById("playertext");
+      const computertext = document.getElementById("computertext");
+      const resulttext = document.getElementById("resulttext");
+
+      const choicebuttons = document.querySelectorAll(".choicebutton");
+      let player;
+      let computer;
+      let result;
+      let streakcount = 0;
+      let maxstreak = 1;
+      choicebuttons.forEach((button) =>
+        button.addEventListener("click", () => {
+          player = button.textContent;
+          computerTurn();
+          playertext.textContent = `You : ${player}`;
+          computertext.textContent = `Bot : ${computer}`;
+          streakCounter();
+          if (streakcount > 1) {
+            if (streakcount == 2) {
+              resulttext.style.color = "blue";
+            } else if (streakcount > 2) {
+              resulttext.style.color = "red";
+            }
+            resulttext.textContent =
+              checkWinner() + "  X" + streakcount + "Streak !!";
+          } else {
+            resulttext.style.color = "black";
+            resulttext.textContent = checkWinner();
+          }
+        })
+      );
+      function streakCounter() {
+        if (checkWinner() == "YOU WIN!") {
+          streakcount++;
+          if (streakcount > maxstreak) {
+            maxstreak = streakcount;
+          }
+        } else {
+          streakcount = 0;
+        }
+      }
+      function computerTurn() {
+        const ranNum = Math.floor(Math.random() * 3) + 1;
+        switch (ranNum) {
+          case 1:
+            computer = "ROCK";
+            break;
+          case 2:
+            computer = "PAPER";
+            break;
+          case 3:
+            computer = "SCISSORS";
+            break;
+        }
+      }
+      function checkWinner() {
+        if (player == computer) {
+          return "DRAW!";
+        } else if (computer == "ROCK") {
+          return player == "PAPER" ? "YOU WIN!" : "YOU LOSE!";
+        } else if (computer == "PAPER") {
+          return player == "SCISSORS" ? "YOU WIN!" : "YOU LOSE!";
+        } else if (computer == "SCISSORS") {
+          return player == "ROCK" ? "YOU WIN!" : "YOU LOSE!";
+        }
+      }
+    </script>
+  </body>
+</html>
