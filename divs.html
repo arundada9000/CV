@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .outer-divs {
+        flex: 1;
+        display: flex;
+      }
+
+      .outer-divs {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+      }
+
+      .divs {
+        flex: 1;
+        padding: 20px;
+        border: 1px solid #999;
+        box-sizing: border-box;
+      }
+      #a1 {
+        background-color: black;
+      }
+      #a2 {
+        background-color: yellow;
+      }
+      #a3 {
+        background-color: pink;
+      }
+      #a4 {
+        background-color: green;
+      }
+      .circle,
+      .rectangle {
+        background-color: aqua;
+        height: 50%;
+        width: 50%;
+        border: 2px solid black;
+        position: relative;
+        top: 20%;
+        left: 25%;
+      }
+      .circle {
+        border-radius: 50%;
+      }
+    </style>
+    <title>Animated Divs</title>
+  </head>
+  <body>
+    <div class="outer-divs">
+      <div class="divs" id="a1">
+        <div class="circle" id="a11"></div>
+      </div>
+      <div class="divs" id="a2">
+        <div class="rectangle" id="a22"></div>
+      </div>
+    </div>
+
+    <div class="outer-divs">
+      <div class="divs" id="a3">
+        <div class="rectangle" id="a33"></div>
+      </div>
+      <div class="divs" id="a4">
+        <div class="circle" id="a44"></div>
+      </div>
+    </div>
+
+    <script>
+      let circles = document.querySelectorAll(".circle");
+      let rectangles = document.querySelectorAll(".rectangle");
+
+      setInterval(() => {
+        rectangles.forEach((rectangle) => {
+          let rectStyle = getComputedStyle(rectangle);
+          let rectHeight = parseFloat(rectStyle.height);
+          let rectWidth = parseFloat(rectStyle.width);
+
+          if (rectHeight !== rectWidth) {
+            rectangle.style.height = `${Math.min(rectHeight, rectWidth)}px`;
+            rectangle.style.width = `${Math.min(rectHeight, rectWidth)}px`;
+          }
+        });
+
+        circles.forEach((circle) => {
+          let circleStyle = getComputedStyle(circle);
+          let circleHeight = parseFloat(circleStyle.height);
+          let circleWidth = parseFloat(circleStyle.width);
+
+          if (circleHeight !== circleWidth) {
+            circle.style.height = `${Math.min(circleHeight, circleWidth)}px`;
+            circle.style.width = `${Math.min(circleHeight, circleWidth)}px`;
+          }
+        });
+      }, 1000);
+
+      const a1 = document.getElementById("a1");
+      const a2 = document.getElementById("a2");
+      const a3 = document.getElementById("a3");
+      const a4 = document.getElementById("a4");
+
+      const a11 = document.getElementById("a11");
+      const a22 = document.getElementById("a22");
+      const a33 = document.getElementById("a33");
+      const a44 = document.getElementById("a44");
+
+      let degrees = 0;
+      setInterval(() => {
+        degrees += 100;
+        a22.style.transform = "rotateZ(" + degrees + "deg)";
+        if (degrees > 1000) {
+          degrees = 100;
+        }
+        a33.style.transform = "rotateX(" + degrees + "deg)";
+        a44.style.transform = "rotateX(" + degrees + "deg)";
+        a11.style.transform = "rotateY(" + degrees + "deg)";
+      }, 5);
+
+      setInterval(() => {
+        a1.style.backgroundColor = `#${colorGenerator()}`;
+        a44.style.borderColor = `#${colorGenerator()}`;
+        a22.style.backgroundColor = `#${colorGenerator()}`;
+      }, 1000);
+      setInterval(() => {
+        a2.style.backgroundColor = `#${colorGenerator()}`;
+        a11.style.borderColor = `#${colorGenerator()}`;
+        a33.style.backgroundColor = `#${colorGenerator()}`;
+      }, 2500);
+      setInterval(() => {
+        a3.style.backgroundColor = `#${colorGenerator()}`;
+        a22.style.borderColor = `#${colorGenerator()}`;
+        a44.style.backgroundColor = `#${colorGenerator()}`;
+      }, 1500);
+      setInterval(() => {
+        a4.style.backgroundColor = `#${colorGenerator()}`;
+        a33.style.borderColor = `#${colorGenerator()}`;
+        a11.style.backgroundColor = `#${colorGenerator()}`;
+      }, 2000);
+      function colorGenerator() {
+        let colors = [];
+        for (let i = 0; i < 6; i++) {
+          let color = Math.floor(Math.random() * 16);
+          if (color == 10) {
+            color = "A";
+          } else if (color == 11) {
+            color = "B";
+          } else if (color == 12) {
+            color = "C";
+          } else if (color == 13) {
+            color = "D";
+          } else if (color == 14) {
+            color = "E";
+          } else if (color == 15) {
+            color = "F";
+          }
+          color = String(color);
+          colors.push(color);
+        }
+        let finalcolor = "";
+        colors.forEach((color) => (finalcolor += color));
+        return finalcolor;
+      }
+    </script>
+  </body>
+</html>
