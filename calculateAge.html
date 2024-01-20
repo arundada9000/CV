@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age calculator</title>
+    <style>
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: beige;
+        font-family: cursive;
+      }
+      h1 {
+        color: blueviolet;
+        text-align: center;
+        text-decoration: underline dashed 8px;
+      }
+      label {
+        font-weight: bold;
+        margin-right: 30px;
+      }
+      #calculate {
+        background-color: aqua;
+        color: black;
+        font-size: 25px;
+        font-weight: bold;
+        font-style: italic;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+      #calculate:hover {
+        opacity: 0.75;
+        color: white;
+        background-color: blue;
+      }
+      .container {
+        padding: 25px;
+        border: none;
+        box-shadow: 10px 10px 10px 10px;
+      }
+      .container1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        margin-top: 10px;
+      }
+      input {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        <span
+          style="
+            border: 2px solid green;
+            padding: 10px;
+            box-shadow: 5px 5px 5px black;
+          "
+          >AGE CALCULATOR</span
+        >
+      </h1>
+      <p>Enter your date of Birth</p>
+      <input type="number" id="year" placeholder="Year" min="1900" max="2100" />
+      <label for="year">Year</label>
+      <input type="number" placeholder="Month" id="month" min="1" max="12" />
+      <label for="month">Month</label>
+      <input type="number" id="day" placeholder="Date" min="1" max="31" />
+      <label for="day">Day</label> <br />
+      <div class="container1">
+        <button id="calculate">Calculate</button>
+      </div>
+      <label id="age"></label>
+    </div>
+
+    <script>
+      const year = document.getElementById("year");
+      const month = document.getElementById("month");
+      const day = document.getElementById("day");
+      const calculateBtn = document.getElementById("calculate");
+      let date = new Date();
+
+      let currentYear = date.getFullYear();
+      let currentMonth = date.getMonth();
+      let currentDay = date.getDate();
+      currentMonth += 1;
+
+      console.log(currentDay, currentMonth, currentYear);
+
+      calculateBtn.onclick = function () {
+        if (checkValidity()) {
+          let y = currentYear - Number(year.value);
+          let m = currentMonth - Number(month.value);
+          let d = currentDay - Number(day.value);
+          if (m < 0) {
+            y--;
+            m = 12 + m;
+          }
+          if (d < 0) {
+            m--;
+            d = 31 - Number(day.value) + currentDay;
+          }
+          let age = `You are ${y} years ${m} months  and ${d} days old.`;
+          if (m == 0 && d == 0) {
+            age = `Happy ${y}th Birthday !!!!!!!!!!!!!!!!`;
+          }
+          document.getElementById("age").textContent = age;
+        }
+      };
+      function checkValidity() {
+        let okay1 = false,
+          okay2 = false,
+          okay3 = false;
+        if (year.value == "") {
+          alert("Please enter year of Birth ! ");
+        } else if (
+          Number(year.value) < 1900 ||
+          Number(year.value) > currentYear
+        ) {
+          alert("Please enter a valid year of Birth ! ");
+          year.value = "";
+        } else {
+          okay1 = true;
+        }
+        if (month.value == "") {
+          alert("Please enter month of Birth ! ");
+        } else if (
+          Number(month.value) < 1 ||
+          Number(month.value) > 12 ||
+          (Number(year.value) == currentYear &&
+            Number(month.value) > currentMonth)
+        ) {
+          alert("Please enter a valid month of Birth ! ");
+          month.value = "";
+        } else {
+          okay2 = true;
+        }
+        if (day.value == "") {
+          alert("Please enter date of Birth ! ");
+        } else if (
+          Number(day.value) < 1 ||
+          Number(day.value) > 31 ||
+          (Number(year.value) == currentYear &&
+            Number(month.value) == currentMonth &&
+            Number(day.value) > currentDay)
+        ) {
+          alert("Please enter a valid date of Birth ! ");
+          day.value = "";
+        } else {
+          okay3 = true;
+        }
+        if (okay1 && okay2 && okay3) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
