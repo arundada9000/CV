@@ -1,18 +1,16 @@
-const bodyy = document.body;
-var timeout = setTimeout(closeWindow, 15000);
-bodyy.addEventListener("mouseover", closeit);
+const timeoutDuration = 60000;
+let inactivityTimeout;
 
-setInterval(timerReset, 1000);
-
-function closeit() {
-  clearTimeout(timeout);
-  timeout = setTimeout(closeWindow, 15000);
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimeout);
+  inactivityTimeout = setTimeout(closeWindow, timeoutDuration);
 }
 
 function closeWindow() {
   window.close();
 }
 
-function timerReset() {
-  timeout = setTimeout(closeWindow, 15000);
-}
+document.addEventListener("mousemove", resetInactivityTimer);
+document.addEventListener("keydown", resetInactivityTimer);
+
+resetInactivityTimer();
