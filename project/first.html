@@ -1,0 +1,574 @@
+<!-- 03a9f4 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume One</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100vw;
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .left {
+        width: 25%;
+        max-width: 280px;
+        padding-left: 8px;
+      }
+      .right {
+        width: 75%;
+        margin-right: 5%;
+        padding: 10px;
+      }
+      .sum {
+        color: #03a9f4;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+      .summary {
+        word-spacing: 1px;
+        margin-bottom: 25px;
+      }
+      .line {
+        border: 1px solid #03a9f4;
+        margin-top: 10px;
+      }
+      .work {
+        display: flex;
+        margin-top: 20px;
+        margin-left: 20px;
+      }
+      .vline {
+        height: 260px;
+        width: 0px;
+        border: 1px solid #03a9f4;
+        position: relative;
+        left: 1px;
+        top: 10px;
+      }
+      .para {
+        margin-left: 10px;
+        font-size: 13px;
+      }
+      .tit {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .inside {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+      }
+      .photo {
+            width: 100%;
+            z-index: 1; 
+            position: relative; 
+      }
+      .image {
+        margin-left: 5%;
+        cursor: pointer;
+        transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+      }
+      
+      .sb {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .bluewala {
+        width: 90%;
+        color: white;
+        background-color: #03a9f4;
+        padding-top: 20px;
+        padding-left: 10%;
+      }
+      .iconharu {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .icons {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+      .icon-back {
+        background-color: white;
+        border: none;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .icon {
+        height: 16px;
+        width: 16px;
+        transition: all 0.3s;
+      }
+      .icon:hover {
+        height: 20px;
+        width: 20px;
+      }
+      .writing {
+        margin-left: 20px;
+        font-size: 14px;
+      }
+      .mems {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      @media(max-width:255px)
+      {
+        .mems {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .bar,.percent{
+                width: 100%; 
+                margin-bottom: 5px;
+                margin-left: 0px;
+            }
+      }
+      .fill {
+        height: 5px;
+        border-radius: 2px;
+        width: 100px;
+        background-color: white;
+        position: relative;
+      }
+      .bar {
+        margin-left: 10px;
+      }
+      .fi {
+        background-color: green;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+      }
+      a {
+        text-decoration: none;
+      }
+      .percent {
+        margin-left: 4px;
+        font-size: 12px;
+      }
+      input {
+        display: inline-block;
+        width: 30px;
+        background-color: transparent;
+        border: none;
+        color: white;
+      }
+      ::placeholder {
+        color: white; /* Change placeholder color here */
+      }
+      input:active {
+        border: none;
+        text-decoration: none;
+      }
+      ul li{
+        list-style-type: circle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="left">
+      <div class="photo">
+        <img
+          src="./icons/medusu1.png"
+          alt="Medusa"
+          height=""
+          width="95%"
+          class="image"
+        />
+      </div>
+      <div class="bluewala">
+        <div style="font-size: 25px">
+          <p>ARUN <br />NEUPANE</p>
+        </div>
+        <div
+          style="
+            font-size: 14px;
+            color: white;
+            margin-bottom: 20px;
+            margin-top: 10px;
+          "
+        >
+          <p>Web Developer</p>
+        </div>
+        <div class="iconharu">
+          <div class="icons">
+            <div class="icon-back">
+              <a href="tel:+9779811420975">
+                <img
+                  src="./icons/mobile-screen-solid.svg"
+                  alt="Mobile screen"
+                  class="icon"
+                />
+              </a>
+            </div>
+            <div class="writing"><p>+9779811420975</p></div>
+          </div>
+          <div class="icons">
+            <div class="icon-back">
+              <a href="mailto:arunneupane0000@gmail.com">
+                <img
+                  src="./icons/envelope-regular.svg"
+                  alt="Mobile screen"
+                  class="icon"
+                />
+              </a>
+            </div>
+            <div class="writing"><p>arunneupane0000@gmail.com</p></div>
+          </div>
+          <div class="icons">
+            <div class="icon-back">
+              <a href="https://maps.app.goo.gl/KmpKqRfG1xvLEfSG8">
+                <img
+                  src="./icons/brush-solid.svg"
+                  alt="Mobile screen"
+                  class="icon"
+                />
+              </a>
+            </div>
+            <div class="writing"><p>Parbat 4, Nepal</p></div>
+          </div>
+          <div class="icons">
+            <div class="icon-back">
+              <img
+                src="./icons/calendar-days-regular.svg"
+                alt="Mobile screen"
+                class="icon"
+              />
+            </div>
+            <div class="writing"><p>2024/05/08</p></div>
+          </div>
+          <div class="icons">
+            <div class="icon-back">
+              <a href="https://www.facebook.com/arundada9000/">
+                <img
+                  src="./icons/person-solid.svg"
+                  alt="Mobile screen"
+                  class="icon"
+                />
+              </a>
+            </div>
+            <div class="writing"><p>Male</p></div>
+          </div>
+          <div class="icons">
+            <div class="icon-back">
+              <img
+                src="./icons/diamond-solid.svg"
+                alt="Mobile screen"
+                class="icon"
+              />
+            </div>
+            <div class="writing"><p>Not Married</p></div>
+          </div>
+          <div class="icons">
+            <div class="icon-back">
+              <img src="./icons/cc-visa.svg" alt="Mobile screen" class="icon" />
+            </div>
+            <div class="writing"><p>Nepalese Citizen</p></div>
+          </div>
+        </div>
+
+        <hr style="border: 1px solid white; margin-bottom: 20px" />
+
+        <div class="skills">
+          <div style="font-size: 20px"><p>SKILLS</p></div>
+          <div class="skils">
+            <div class="mems">
+              <div style="font-size: 12px">Good <br />Communication</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 20%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="20%" />
+              </div>
+            </div>
+            <div class="mems">
+              <div style="font-size: 12px">
+                Good In<br />Customer<br />Relations
+              </div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 40%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="40%" />
+              </div>
+            </div>
+            <div class="mems">
+              <div style="font-size: 12px">Programming</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 60%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="60%" />
+              </div>
+            </div>
+            <div class="mems">
+              <div style="font-size: 12px">Videographer</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="80%" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr
+          style="border: 1px solid white; margin-bottom: 20px; margin-top: 20px"
+        />
+
+        <div class="skills">
+          <div style="font-size: 20px"><p>SOFTWARE</p></div>
+          <div class="skils">
+            <div class="mems">
+              <div style="font-size: 12px">Corel <br />Draw</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 60%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="60%" />
+              </div>
+            </div>
+            <div class="mems">
+              <div style="font-size: 12px">Photoshop</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="80%" />
+              </div>
+            </div>
+            <div class="mems">
+              <div style="font-size: 12px">Ms.<br />Word</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 80%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="80%" />
+              </div>
+            </div>
+            <div class="mems">
+              <div style="font-size: 12px">Ms. <br />Excel</div>
+              <div class="bar">
+                <div class="fill">
+                  <div class="fi" style="width: 100%"></div>
+                </div>
+              </div>
+              <div class="percent">
+                <input type="text" placeholder="100%" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr
+          style="border: 1px solid white; margin-bottom: 20px; margin-top: 20px"
+        />
+
+        <div class="skills">
+          <div style="font-size: 20px"><p>LANGUAGE</p></div>
+          <hr style="border: 1px solid white; margin-bottom: 20px" />
+        </div>
+      </div>
+      <!--  bluewala end -->
+
+      <!-- Left wala end -->
+    </div>
+    <div class="right">
+      <div class="summary">
+        <p class="sum">SUMMARY</p>
+        <p class="para">
+          Experienced [Job Title] with over [Number] years of experience in
+          [industry]. Excellent reputation for resolving problems, improving
+          customer satisfaction, and driving overall operational improvements.
+          Consistently saved costs while increasing profits.
+        </p>
+      </div>
+
+      <hr class="line" />
+      <div class="sum">
+        <p class="sum">WORK EXPERIENCE</p>
+      </div>
+
+      <div class="work">
+        <div class="vline"></div>
+        <div class="para">
+          <p>
+            <ul>
+              <li>January 2024 - December 2024</li>
+            </ul>
+            </p>
+          <div class="sb">
+            <div class="tit">Web Developer - Shailesh Technologies</div>
+            <div class="tit">Parbat 4,Nepal</div>
+          </div>
+
+          <p class="summary">
+            Managed And Achieved Quality Documentation And Participated In
+            Internal And External Quality Audits.
+          </p>
+          <p class="summary">
+            Resolved Conflicts And Negotiated Agreements Between Parties In
+            Order To Reach Win-Win Solutions To Disagreements And Clarify
+            Misunderstandings.
+          </p>
+          <p class="summary">
+            <ul>
+              <li>April 2024-July 2024</li>
+            </ul>
+          </p>
+          <div class="sb">
+            <div class="tit">Design - Cyber Technologies</div>
+            <div class="tit">Parbat 4,Nepal</div>
+          </div>
+          <p class="summary">
+            Resolved Conflicts And Negotiated Agreements Between Parties In
+            Order To Reach Win-Win Solutions To Disagreements And Clarify
+            Misunderstandings.
+          </p>
+          <p class="summary">
+            Managed And Achieved Quality Documentation And Participated In
+            Internal And External Quality Audits.
+          </p>
+        </div>
+      </div>
+
+      <hr class="line" />
+
+      <div class="sum">
+        <p class="sum">EDUCATION</p>
+      </div>
+
+      <div class="work">
+        <div class="vline" style="height: 140px"></div>
+        <div class="para">
+          <p>
+            <ul>
+              <li>February 2024 - December 2024</li>
+            </ul>
+          </p>
+          <p class="tit">King's College - Master's</p>
+          <p class="summary">Arun dada , Parbat.</p>
+
+          <p class="summary">
+            <ul>
+              <li>January 2024 - November 2024</li>
+            </ul>
+          </p>
+          <p class="tit">
+            City Royal Sec - Senior Secondary School Certificate (SSCE)
+          </p>
+          <p class="summary">Parbat - 4 , Nepal</p>
+        </div>
+      </div>
+
+      <hr class="line" />
+
+      <div class="sum">
+        <p class="sum">CERTIFICATE</p>
+      </div>
+      <div class="certificate">
+        <div class="work">
+          <div class="vline" style="height: 40px"></div>
+          <div class="inside">
+            <div class="para" style="font-size: 12px">
+              <p>
+                <ul>
+                  <li>FSLC</li>
+                  <li>SSLC</li>
+                  <li>NYSC</li>
+                </ul>
+              </p>
+            </div>
+            <div class="para">
+              <p style="text-align: right; font-size: 12px">
+                January 2024<br />
+                July 2024<br />
+                July 2024
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line" />
+
+      <div class="sum">
+        <p class="sum">AWARDS</p>
+      </div>
+      <div class="work">
+        <div class="vline" style="height: 40px; font-size: 12px"></div>
+        <div class="para">
+          <p>
+            <ul>
+              <li> Cisco Tect 2004 </li>
+              <li>Diploma In Networking 2020</li>
+              <li>Best Staff of the Month April 2005</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      <hr class="line" />
+      <div class="sum">
+        <p class="sum">PUBLICATIONS</p>
+      </div>
+      <!-- ending of right -->
+    </div>
+    <script>
+      const photo = document.querySelector(".photo");
+      const image = document.querySelector(".image");
+      photo.addEventListener("mouseover",()=>{
+        image.style.position = "absolute";
+        image.style.width = "50vw";
+        image.style.height = "50vh";
+        image.style.top = "25vh";
+        image.style.left = "70%";
+        photo.style.width="15vw";
+        photo.style.height="15vw";
+      })
+      photo.addEventListener("mouseout",()=>{
+        image.style.position = "relative";
+        image.style.width = "95%";
+        image.style.height = "auto";
+        image.style.top = "0";
+        image.style.left = "0%";
+        photo.style.width="fit-content";
+        photo.style.height="fit-content";
+      })
+      </script>
+  </body>
+</html>
