@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Animation</title>
+  <style>
+    body {
+      height: 100vh;
+      font-size: 50px;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      background-color: #0b0f12;
+      background-image: url("maxresdefault.jpg");
+      background-size: 80vw 80vh;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .text {
+      color: aliceblue;
+      font-size: 4rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .text span {
+      display: inline-block;
+      text-shadow: 10px 10px 15px black;
+      animation: textAnim 2s ease-in-out infinite alternate;
+      animation-delay: calc(0.4s*var(--i));
+    }
+
+    @keyframes textAnim {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-80px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background">
+
+  </div>
+  <div class="text">
+    <span style="--i: 1;">I</span>
+    <span style="--i: 2;">W</span>
+    <span style="--i: 3;">a</span>
+    <span style="--i: 4;">n</span>
+    <span style="--i: 5;">n</span>
+    <span style="--i: 6;">a</span>
+    <span style="--i: 7;">B</span>
+    <span style="--i: 8;">e</span>
+    <span style="--i: 9;">Y</span>
+    <span style="--i: 10;">o</span>
+    <span style="--i: 11;">u</span>
+    <span style="--i: 12;">r</span>
+    <span style="--i: 13;">s</span>
+  </div>
+
+</body>
+
+</html>
