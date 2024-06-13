@@ -8,6 +8,8 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: beige;
+  height: 90svh;
+  overflow: hidden;
 }
 .Arun {
   color: rgb(3, 124, 124);
